@@ -1,0 +1,42 @@
+#!/bin/sh
+
+# WUM Workbench 1.0 (http://www.hypknowsys.org/wum)
+#
+# After setting the following two environment variables, WUMgui -- the 
+# interactive graphic user interface of the WUM Workbench -- can be
+# launched using this shell script. Make ${WUM_HOME}/bin your current
+# working directory and submit the following command at the system prompt:
+#
+# prompt% ./wumgui
+#
+# The first environment variable JAVA_HOME contains the absolute path to
+# the Java directory. It must be adjusted according to your system.
+# Example: JAVA_HOME=/usr/lib/j2sdk1.4.0_01
+#
+# The second environment variable WUM_HOME contains the path of the
+# WUM installation. This directory contains the sub-directories /bin,
+# /data, /doc and /lib. After starting the tool for the first time, this 
+# directory will also contain the file WUM.config as well. This
+# environment variable must be adjusted according to the installation of
+# the WUM Workbench. 
+# Example: WUM_HOME=/home/user1/WUM.workbench10
+#
+# Note: You may have to adjust the size of memory allocated to the Java
+# Virtual Machine in the environment variable WUM_JAVA_OPTIONS (-ms:
+# size at start of JVM resp. -mx: maximum size). The size of two stacks
+# used by the JVM (-ss resp. -oss) can be changed as well. See the Java
+# tools documentation for details.
+
+
+WUM_HOME=/users/yourNamePath/WUM.workbench10
+JAVA_HOME=/usr/yourJavaPath
+
+
+# Please do not modify the following lines without appropriate knowledge.
+# Note that the memory allocated to the Java virtual machine corresponds 
+# is appropriate for a computer with 256 MB RAM. 
+
+
+WUM_JAVA_OPTIONS="-ms32m -mx200m -ss4m -oss4m -Dfile.encoding=ISO-8859-1"
+
+${JAVA_HOME}/bin/java ${WUM_JAVA_OPTIONS} -classpath ${WUM_HOME}/lib/wum-workbench-10.jar:${WUM_HOME}/lib/weka.jar:${WUM_HOME}/lib/jdom.jar:${WUM_HOME}/lib/looks-1.1.2.jar:${WUM_HOME}/lib/forms-1.0.2.jar org.hypknowsys.wum.client.gui.WUMgui ${WUM_HOME} &
